@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Táblázat - CRUD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Kezdőlap</a></li>
+            <li><a href="table.html" class="active">Táblázat</a></li>
+            <li><a href="html5.html">HTML5</a></li>
+            <li><a href="chart.html">Chart.js</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+        </ul>
+    </nav>
+
+    <aside></aside>
+
+    <div class="div-content">
+        <h2>CRUD Táblázat</h2>
+
+        <form id="dataForm">
+            <input type="text" name="name" placeholder="Név" required minlength="2" maxlength="20">
+            <input type="number" name="age" placeholder="Kor" required min="1" max="120">
+            <input type="text" name="city" placeholder="Város" required>
+            <input type="text" name="email" placeholder="Email" required>
+            <button type="submit">Hozzáadás / Mentés</button>
+        </form>
+
+        <input type="text" id="searchInput" placeholder="Keresés...">
+
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th data-column="name">Név</th>
+                    <th data-column="age">Kor</th>
+                    <th data-column="city">Város</th>
+                    <th data-column="email">Email</th>
+                    <th>Műveletek</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dinamikusan töltjük fel -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>Készítette: Kovács Zoltán – I4CUD1</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="crud-table.js"></script>
+</body>
+</html>
