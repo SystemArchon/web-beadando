@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 API példák</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Kezdőlap</a></li>
+            <li><a href="table.html">Táblázat</a></li>
+            <li><a href="html5.html" class="active">HTML5</a></li>
+            <li><a href="chart.html">Chart.js</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+        </ul>
+    </nav>
+
+    <aside></aside>
+
+    <div class="div-content">
+        <h2>HTML5 API példák</h2>
+
+        <section>
+            <h3>1. Web Storage</h3>
+            <input type="text" id="storageInput" placeholder="Írj be valamit...">
+            <button onclick="saveToStorage()">Mentés</button>
+            <button onclick="loadFromStorage()">Betöltés</button>
+            <p id="storageOutput"></p>
+        </section>
+
+        <section>
+            <h3>2. Web Worker</h3>
+            <button onclick="startWorker()">Számítás indítása</button>
+            <p id="workerResult"></p>
+        </section>
+
+        <section>
+            <h3>3. Server-Sent Events</h3>
+            <p><em>Ez itt csak egy szimuláció</em></p>
+            <button onclick="startFakeSSE()">Indítás</button>
+            <div id="sseBox"></div>
+        </section>
+
+        <section>
+            <h3>4. Geolocation API</h3>
+            <button onclick="getLocation()">Helyzet lekérése</button>
+            <p id="locationOutput"></p>
+        </section>
+
+        <section>
+            <h3>5. Drag and Drop API</h3>
+            <div id="dragItem" draggable="true" style="width:100px; height:100px; background:red;"></div>
+            <div id="dropZone" style="width:150px; height:150px; background:lightgrey; margin-top:10px;">Dobd ide!</div>
+        </section>
+
+        <section>
+            <h3>6. Canvas</h3>
+            <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000;"></canvas>
+        </section>
+
+        <section>
+            <h3>7. SVG</h3>
+            <svg width="200" height="100">
+                <rect width="200" height="100" fill="blue" />
+                <text x="10" y="50" fill="white">SVG szöveg</text>
+            </svg>
+        </section>
+    </div>
+
+    <footer>
+        <p>Készítette: Kovács Zoltán – I4CUD1</p>
+    </footer>
+
+    <script>
+        function saveToStorage() {
+            const val = document.getElementById("storageInput").value;
+            localStorage.setItem("myKey", val);
+        }
+
+        function loadFromStorage() {
+            document.getElementById("storageOutput").innerText = localStorage.getItem("myKey") || "Nincs adat";
+        }
+
+        let worker;
+        function startWorker() {
+            if (typeof(Worker) !== "undefined") {
+                worker = new Worker("worker.js");
+                worker.onmessage = function(e) {
+                    document.getElementById("workerResult").innerText = "Eredmény: " + e.data;
+                };
+                worker.postMessage(1000000);
+            } else {
+                document.getElementById("workerResult").innerText = "Nem támogatott!";
+            }
+        }
+
+        function startFakeSSE() {
+            let counter = 0;
+            const interval = setInterval(() => {
+                counter++;
+                const msg = document.createElement("div");
+                msg.textContent = "Esemény #" + counter;
+                document.getElementById("sseBox").appendChild(msg);
+                if (counter >= 5) clearInterval(interval);
+            }, 1000);
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    const coords = pos.coords;
+                    document.getElementById("locationOutput").innerText = `Szélesség: ${coords.latitude}, Hosszúság: ${coords.longitude}`;
+                });
+            } else {
+                document.getElementById("locationOutput").innerText = "Nem támogatott!";
+            }
+        }
+
+        const dragItem = document.getElementById("dragItem");
+        const dropZone = document.getElementById("dropZone");
+
+        dragItem.addEventListener("dragstart", (e) => e.dataTransfer.setData("text", "ok"));
+        dropZone.addEventListener("dragover", (e) => e.preventDefault());
+        dropZone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropZone.style.background = "green";
+            dropZone.innerText = "Siker!";
+        });
+
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "orange";
+        ctx.fillRect(20, 20, 150, 50);
+    </script>
+</body>
+</html>
