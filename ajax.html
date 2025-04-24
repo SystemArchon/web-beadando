@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Táblázat - CRUD</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        input, button { margin: 5px; }
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 5px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Kezdőlap</a></li>
+            <li><a href="table.html">Táblázat</a></li>
+            <li><a href="html5.html">HTML5</a></li>
+            <li><a href="chart.html">Chart.js</a></li>
+            <li><a href="ajax.html" class="active">AJAX</a></li>
+        </ul>
+    </nav>
+
+    <aside></aside>
+
+    <h1>AJAX CRUD példa</h1>
+
+    <div>
+        <label>Név: <input type="text" id="name" maxlength="30"></label>
+        <label>Magasság: <input type="text" id="height"></label>
+        <label>Súly: <input type="text" id="weight"></label>
+        <label>ID (módosításhoz/törléshez): <input type="text" id="id"></label>
+        <button onclick="getData()">🔄 Olvasás</button>
+        <button onclick="createData()">➕ Létrehozás</button>
+        <button onclick="updateData()">✏️ Módosítás</button>
+        <button onclick="deleteData()">🗑 Törlés</button>
+    </div>
+
+    <div id="output"></div>
+
+    <footer>
+        <p>Készítette: Kovács Zoltán – I4CUD1</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="ajax.js"></script>
+</body>
+</html>
