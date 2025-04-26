@@ -95,7 +95,7 @@
                 worker.onmessage = function(e) {
                     document.getElementById("workerResult").innerText = "Eredmény: " + e.data;
                 };
-                worker.postMessage(1000000);
+                worker.postMessage(100);
             } else {
                 document.getElementById("workerResult").innerText = "Nem támogatott!";
             }
