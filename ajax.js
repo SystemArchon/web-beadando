@@ -4,7 +4,8 @@ const CODE = "I4CUD1pop666";
 function getData() {
     const formData = new FormData();
     formData.append("op", "read");
-    formData.append("code", CODE);
+    const codeField = document.getElementById("id").value.trim();
+    formData.append("code", codeField);
 
     fetch(API_URL, {
         method: "POST",
@@ -33,7 +34,6 @@ function createData() {
         .then(res => res.text())
         .then(msg => {
             alert("Létrehozás: " + msg);
-            getData();
         });
 }
 
@@ -57,7 +57,6 @@ function updateData() {
         .then(res => res.text())
         .then(msg => {
             alert("Módosítás: " + msg);
-            getData();
         });
 }
 
@@ -78,7 +77,6 @@ function deleteData() {
         .then(res => res.text())
         .then(msg => {
             alert("Törlés: " + msg);
-            getData();
         });
 }
 
