@@ -53,3 +53,12 @@ th, td {
     padding: 0.5em;
     text-align: center;
 }
+
+.card {
+    border: 1px solid #ccc;
+    padding: 1em;
+    border-radius: 10px;
+    width: 200px;
+    margin: 10px;
+    background: #f0f0f0;
+}
